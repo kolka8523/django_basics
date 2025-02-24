@@ -20,7 +20,7 @@ class Movie(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     release_date = models.DateField
     description = models.TextField
-    poster_url = models.ImageField(upload_to='directors/', null=True, blank=True)
+    poster = models.ImageField(upload_to='directors/', null=True, blank=True)
 
 
 class Review(models.Model):
