@@ -5,21 +5,21 @@ User = get_user_model()
 
 
 class Director(models.Model):
-    name = models.CharField(100)
+    name = models.CharField(max_length=100)
     birthday = models.DateField
 
 
 class Genre(models.Model):
-    name = models.CharField(50)
+    name = models.CharField(max_length=50)
 
 
 class Movie(models.Model):
-    title = models.CharField(150)
+    title = models.CharField(max_length=150)
     director = models.ForeignKey(Director, on_delete=models.CASCADE)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     release_date = models.DateField
     description = models.TextField
-    poster_url = models.CharField(150)
+    poster_url = models.CharField(max_length=150)
 
 
 class Review(models.Model):
