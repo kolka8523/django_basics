@@ -7,6 +7,7 @@ User = get_user_model()
 class Director(models.Model):
     name = models.CharField(max_length=100)
     birthday = models.DateField
+    picture = models.ImageField(upload_to='directors/', null=True, blank=True)
 
 
 class Genre(models.Model):
@@ -19,7 +20,7 @@ class Movie(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     release_date = models.DateField
     description = models.TextField
-    poster_url = models.CharField(max_length=150)
+    poster_url = models.ImageField(upload_to='directors/', null=True, blank=True)
 
 
 class Review(models.Model):
