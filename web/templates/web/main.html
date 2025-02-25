@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>HTML example</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-        <a href="http://ya.ru">Яндекс</a>
-        {{year}}
-    </body>
-</html>
+{% extends 'web/base.html' %}
+{% block content %}  
+    <h1>Hello World!</h1>
+
+    {% if not user.is_anonymous %}
+        Вы авторизованны как <b>{{ user.username }}</b>
+    {% endif %}
+
+    <a href="http://ya.ru">Яндекс</a>
+    {{year}}
+{% endblock %}
