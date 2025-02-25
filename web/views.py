@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.shortcuts import redirect, render
 
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import get_user_model, authenticate, login, logout
 from web.forms import AuthorizationForm, RegistrationForm
 
 
@@ -44,3 +44,7 @@ def authorization_view(request):
                 login(request, user)
                 return redirect('main')
     return render(request, "web/authorization.html", {"form": form})
+
+def logout_view(request):
+    logout(request)
+    return redirect("main")
