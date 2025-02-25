@@ -1,8 +1,8 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-from django.contrib.auth import get_user_model
-from web.forms import RegistrationForm
+from django.contrib.auth import get_user_model, authenticate, login
+from web.forms import AuthorizationForm, RegistrationForm
 
 
 User = get_user_model()
@@ -13,7 +13,6 @@ def main_view(request):
     return render(request, "web/main.html", {
         "year": year
         })
-    
 
 def registration_view(request):
     form = RegistrationForm()
@@ -32,3 +31,16 @@ def registration_view(request):
         "form": form,
         "is_success": is_success
         })
+    
+def authorization_view(request):
+    form = AuthorizationForm()
+    if request.method == 'POST':
+        form = AuthorizationForm(data=request.POST)
+        if form.is_valid():
+            user = authenticate(**form.cleaned_data)
+            if user is None:
+                form.add_error(None, "Пользователь не найден")
+            else:
+                login(request, user)
+                return redirect('main')
+    return render(request, "web/authorization.html", {"form": form})
