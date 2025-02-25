@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cinema Review</title>
+    </head>
+    <body>
+        <h1><a href="{% url 'main' %}">Cinema Review</a></h1>
+        <nav>
+            <a href="{% url 'main' %}">Главная</a>
+            {% if user.is_anonymous %}
+                <a href="{% url 'registration' %}">Регистрация</a>
+                <a href="{% url 'authorization' %}">Авторизация</a>
+            {% endif %}
+        </nav>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
