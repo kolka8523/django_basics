@@ -1,11 +1,24 @@
 {% extends 'web/base.html' %}
 {% block content %}  
-    <h1>Hello World!</h1>
 
     {% if not user.is_anonymous %}
         Вы авторизованны как <b>{{ user.username }}</b>
+        <a href="{% url 'reviews_add' %}">Создать рецензию</a>
     {% endif %}
 
-    <a href="http://ya.ru">Яндекс</a>
-    {{year}}
+    {% if user.is_staff %}
+        У вас есть доступ сотрудника
+    {% endif %}
+
+    <ul>
+        {% for movie in movies %}
+        <li>
+            <b>{{ movie.title }}</b>
+            {{ movie.director }}
+            {{ movie.genre }}
+            {{ movie.description }}
+        </li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}

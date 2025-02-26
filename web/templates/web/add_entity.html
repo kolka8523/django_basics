@@ -1,0 +1,14 @@
+{% extends 'web/base.html' %}
+{% block content %}  
+    <h2>Добавление</h2>
+
+    {% if is_success %}
+        <p><b>Данные добавлены</b></p>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Сохранить</button>
+    </form>
+{% endblock %}

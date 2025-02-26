@@ -13,6 +13,11 @@
             {% else %}
                 <a href="{% url 'logout' %}">Выход</a>
             {% endif %}
+            {% if user.is_staff %}
+                <a href="{% url 'genre_add' %}">Добавить жанр</a>
+                <a href="{% url 'director_add' %}">Добавить режиссера</a>
+                <a href="{% url 'movie_add' %}">Добавить фильм</a>
+            {% endif %}
         </nav>
         <hr>
         {% block content %}{% endblock %}
